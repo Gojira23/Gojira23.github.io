@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Développeur</title>
+    <style>
+        :root {
+            --primary: #00BCD4;
+            --primary-dark: #00ACC1;
+            --secondary: #1E1E2E;
+            --accent: #FF4081;
+            --light: #2C2C3C;
+            --dark: #15151F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0C0;
+            --card-bg: #242435;
+            --shadow: 0 4px 8px rgba(0,0,0,0.3);
+            --shadow-hover: 0 10px 20px rgba(0,0,0,0.5);
+            --grad-primary: linear-gradient(135deg, #00BCD4 0%, #3F51B5 100%);
+            --grad-dark: linear-gradient(135deg, #1E1E2E 0%, #121220 100%);
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            background: var(--grad-dark);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        }
+        
+        .profile-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), #3F51B5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Introduction */
+        .intro {
+            padding: 5rem 0;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .intro p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        /* Skills */
+        .skills {
+            background: var(--secondary);
+            padding: 4rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .skill-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background: var(--light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            border: 1px solid rgba(0, 188, 212, 0.1);
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+            background-color: rgba(0, 188, 212, 0.1);
+            border-color: var(--primary);
+        }
+        
+        /* Projects */
+        .projects {
+            padding: 4rem 0;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0, 188, 212, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 188, 212, 0.2);
+            border-color: rgba(0, 188, 212, 0.2);
+        }
+        
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--card-bg) 100%);
+            opacity: 0.3;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-tag {
+            background: rgba(0, 188, 212, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.4rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 188, 212, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 188, 212, 0.4);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(0, 188, 212, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        /* About Me */
+        .about {
+            background: var(--secondary);
+            padding: 4rem 0;
+        }
+        
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 3px solid rgba(0, 188, 212, 0.2);
+        }
+        
+        .about-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 4rem 0;
+            background: var(--grad-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .contact p {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .contact-link i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--text-secondary);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            border-radius: 50%;
+        }
+        
+        .social-link:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+            background: var(--secondary);
+        }
+        
+        /* Code styling */
+        pre {
+            background-color: var(--dark);
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            border-left: 4px solid var(--primary);
+            color: #e6e6e6;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgba(0, 188, 212, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: var(--primary);
+        }
+
+        /* Modal styles */
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        overflow: hidden; /* Changé de overflow-y: auto à overflow: hidden */
+        }
+
+        .modal-content {
+            background-color: var(--secondary);
+            margin: 40px auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh; /* Hauteur maximale de 80% de la hauteur de la fenêtre */
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 188, 212, 0.2);
+            position: relative;
+            border: 1px solid rgba(0, 188, 212, 0.1);
+            overflow-y: auto; /* Ajoute le défilement à la modal-content uniquement */
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            margin-top: 20px;
+        }
+        
+        .modal-body h3 {
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body h4 {
+            color: var(--text-primary);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-body ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+
+        .btn-disabled {
+            background: var(--light);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        .btn-disabled:hover {
+            background: var(--light);
+            transform: none;
+            box-shadow: none;
+            color: var(--text-secondary);
+        }
+        
+        /* Animation and Hover Effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .project-card, .skill-item, .btn {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <!-- Ajouter Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+     
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile">
+                    <img src="IMG_5232.jpg" alt="Photo de profil" class="profile-img">
+                    <div class="profile-text">
+                        <h1>SIEWIERA Logan</h1>
+                        <p>Développeur Full Stack | Étudiant en Informatique</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+     
+    <section class="intro">
+        <div class="container">
+            <h2>Bienvenue sur mon portfolio</h2>
+            <p>Je suis un développeur passionné qui aime relever des défis techniques et créer des applications innovantes. Voici une sélection de mes projets réalisés pendant mon parcours académique et personnel.</p>
+            <a href="#projects" class="btn">Découvrir mes projets</a>
+        </div>
+    </section>
+
+     
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="project-grid">
+                 
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="PPIL.png" alt="Projet Formes Géométriques">
+                    </div>
+                    <div class="project-content">
+                        <h3>Premiers Pas vers l'Ingénierie du logiciel</h3>
+                        <p>Application distribuée client-serveur pour la gestion de formes géométriques 2D. Client C++ communiquant avec un serveur Java via sockets pour l'affichage graphique, avec implémentation de plusieurs design patterns.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">Winsock</span>
+                            <span class="project-tag">Design Patterns</span>
+                            <span class="project-tag">Client-Serveur</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('ppilModal').style.display='block'">Voir détails</button>
+                            <a href="https://gitlab.com/mspd/PPIL" class="btn btn-outline">Code source</a>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="project-card">
+                    <div class="project-img">
+                        <img src="Dijkstra.jpg" alt="Projet Dijkstra">
+                    </div>
+                    <div class="project-content">
+                        <h3>Optimisation de l'Algorithme de Dijkstra</h3>
+                        <p>Implémentation et analyse comparative de l'algorithme de Dijkstra sur trois structures de données différentes (tableau dynamique, arbre binaire complet, liste chaînée). Interface graphique JavaFX permettant de visualiser les graphes et leurs solutions optimales.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">JavaFX</span>
+                            <span class="project-tag">JNI</span>
+                            <span class="project-tag">Bash</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Algorithmes</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('dijkstraModal').style.display='block'">Voir détails</button>
+                            <a href="https://gitlab.com/mspd/Synth" class="btn btn-outline">Code source</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="hearthstone.png" alt="Projet Hearthstone">
+                    </div>
+                    <div class="project-content">
+                        <h3>Implémentation Java de Hearthstone</h3>
+                        <p>Reproduction des mécaniques de base du jeu Hearthstone sans interface graphique. Cartes, invocations, héros, sorts, gestion du mana et des capacités spéciales.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">JUnit</span>
+                            <span class="project-tag">Programmation OO</span>
+                            <span class="project-tag">Design Pattern</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('hearthstoneModal').style.display='block'">Voir détails</button>
+                            <button class="btn btn-disabled">Code non disponible</button>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="sql.png" alt="Projet PL/SQL Oracle">
+                    </div>
+                    <div class="project-content">
+                        <h3>Gestion de Location de Véhicules</h3>
+                        <p>Interface PL/SQL Oracle pour un système de gestion de location de véhicules. Implémentation de procédures stockées pour l'ajout/modification de véhicules, la recherche de disponibilité et le calcul de formules tarifaires avantageuses.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">PL/SQL</span>
+                            <span class="project-tag">Oracle</span>
+                            <span class="project-tag">Base de données</span>
+                            <span class="project-tag">Procédures stockées</span>
+                            <span class="project-tag">Gestion</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('hearthstoneModal').style.display='block'">Voir détails</button>
+                            <button class="btn btn-disabled">Code non disponible</button>
+                        </div>
+                    </div>
+                </div>
+                
+                 
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="sql.png" alt="Projet Gestion de Projets">
+                    </div>
+                    <div class="project-content">
+                        <h3>Système de Gestion de Projets d'Entreprise</h3>
+                        <p>Conception et implémentation d'un système complet de gestion de projets en PL/SQL Oracle. La solution permet de suivre les coûts des employés et matériels, de gérer les quotités de travail et d'alerter en cas de dépassement de budget via des triggers avancés.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">PL/SQL</span>
+                            <span class="project-tag">Oracle</span>
+                            <span class="project-tag">Triggers</span>
+                            <span class="project-tag">Contraintes d'intégrité</span>
+                            <span class="project-tag">Gestion de projets</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('hearthstoneModal').style.display='block'">Voir détails</button>
+                            <button class="btn btn-disabled">Code non disponible</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Mes Compétences</h2>
+            <div class="skill-categories">
+                <div class="skill-category">
+                    <h3>Langages de programmation</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">C/C++</div>
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">Angular</div>
+                        <div class="skill-item">SQL</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Outils & Pratiques</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">Docker</div>
+                        <div class="skill-item">Design Patterns</div>
+                        <div class="skill-item">IntelliJ IDEA</div>
+                        <div class="skill-item">CLion</div>
+                        <div class="skill-item">VS Code</div>
+                        <div class="skill-item">Client-Serveur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">À Propos de Moi</h2>
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="image.jpg" alt="À propos de moi">
+                </div>
+                <div class="about-content">
+                    <h3>Mon Parcours</h3>
+                    <p>Je suis actuellement étudiant en M1 informatique à l'UFR Mathématiques Informatique et Mécanique à Metz. Passionné par le développement logiciel, j'ai développé une solide expertise en développement web et applications.</p>
+                    <p>Mon approche du développement est centrée sur la qualité et la propreté du code. J'accorde une importance particulière à l'utilisation de design patterns appropriés, à l'optimisation des performances et à la robustesse des solutions. Je m'efforce surtout de concevoir du code extensible qui pourra évoluer avec les besoins futurs.</p>
+                    <p>Outre la programmation, je m'intéresse également à la découverte de nouvelles technologies. Je suis passionné par les sciences en général et j'apprécie me détendre avec les jeux vidéo pendant mon temps libre.</p>
+                    <a href="#contact" class="btn">Me contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact</h2>
+                <p>Vous souhaitez discuter d'un projet ou d'une opportunité ? N'hésitez pas à me contacter !</p>
+                <div class="contact-links">
+                    <a href="mailto:logan.siewiera@icloud.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>logan.siewiera@icloud.com</span>
+                    </a>
+                    <a href="tel:+33765757367" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <span>+33 7 65 75 73 67</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/logan-siewiera-159274344/" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 SIEWIERA Logan. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="https://gitlab.com/mspd" class="social-link"><i class="fab fa-gitlab"></i></a>
+                    <a href="https://www.linkedin.com/in/logan-siewiera-159274344/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+     <div id="dijkstraModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('dijkstraModal').style.display='none'">&times;</span>
+        <h2>Projet de Synthèse : Implémentation et Optimisation de l'Algorithme de Dijkstra</h2>
+        <div class="modal-body">
+            <h3>Aperçu du projet</h3>
+            <p>Ce projet académique visait à implémenter l'algorithme de Dijkstra pour la recherche du plus court chemin dans un graphe en utilisant trois structures de données différentes, puis à analyser et comparer leurs performances. Une interface graphique JavaFX a également été développée pour visualiser les graphes et leurs solutions.</p>
+            
+            <h3>Objectifs du projet</h3>
+            <ul>
+                <li>Implémenter l'algorithme de Dijkstra sur trois structures de données (tableau dynamique, arbre binaire complet, liste chaînée)</li>
+                <li>Analyser la complexité théorique et mesurer les performances pratiques des différentes implémentations</li>
+                <li>Développer une interface graphique interactive pour la visualisation des graphes</li>
+                <li>Créer des scripts d'automatisation pour générer et tester différents types de graphes</li>
+                <li>Mettre en pratique les concepts d'algorithmique, de structures de données et d'architecture logicielle</li>
+            </ul>
+            
+            <h3>Architecture technique</h3>
+            <p>Le projet est structuré en plusieurs composants interconnectés :</p>
+            <pre>
+/
+├── algo.c/.h           # Implémentation de l'algorithme de Dijkstra
+├── dyntable.c/.h       # Structure de tableau dynamique
+├── tree.c/.h           # Structure d'arbre binaire complet
+├── list.c/.h           # Structure de liste chaînée
+├── heap.c/.h           # Interface générique de tas-min
+├── graph.c/.h          # Gestion des graphes
+├── util.c/.h           # Fonctions utilitaires
+├── scripts/            # Scripts de génération et d'analyse
+│   ├── generate_collection.sh    # Génération de jeux de tests
+│   ├── run_experiments.sh        # Exécution des tests
+│   └── clean_solution.py         # Analyse des résultats avec matplotlib
+└── java/               # Interface graphique
+    ├── MainApplication.java      # Point d'entrée de l'application
+    ├── MainController.java       # Contrôleur principal
+    ├── runDijkstra.java          # Interface JNI
+    └── DijkstraJNI.c             # Implémentation JNI</pre>
+            
+            <h3>Implémentation de l'algorithme</h3>
+            <p>L'algorithme de Dijkstra a été implémenté en C avec une approche générique permettant de l'utiliser avec différentes structures de données :</p>
+            <pre>
+void Dijkstra(graph G, const char * source_name, int heap_type) {
+    struct heap_t *H = new_heap(heap_type);
+    struct vertex_t * v;
+    for(int i=0; i<get_dyn_table_used(G); i++){
+        v = get_dyn_table_data(G,i);
+        if(strcmp(get_vertex_id(v),source_name) == 0){
+            set_vertex_total_distance(v,0);
+        }else {
+            set_vertex_total_distance(v, INFINITY);
+        }
+        set_vertex_dict_position(v,i);
+        set_vertex_predecessor(v,NULL);
+        H->heap_insert(H, get_vertex_total_distance(v),v);
+    }
+
+    while(!H->heap_is_empty(H)){
+        v=get_heap_node_data(H->heap_extract_min(H));
+
+        struct list_t* neighbours = get_vertex_incidence_list(v);
+        struct list_node_t* iterr = get_list_head(neighbours);
+        for(int i = 0; i< get_list_size(neighbours); i++){
+            struct edge_t * n = get_list_node_data(iterr);
+            struct vertex_t * V = get_edge_endpoint_V(n);
+            struct vertex_t * U = get_edge_endpoint_U(n);
+            if(strcmp(get_vertex_id(v),get_vertex_id(U)) == 0){ 
+                U = V;
+                V = v;
+            }
+            if(get_vertex_total_distance(U) > (get_vertex_total_distance(V) + get_edge_distance(n))){
+                set_vertex_total_distance(U,(get_vertex_total_distance(V) + get_edge_distance(n)));
+                set_vertex_predecessor(U,V);
+                H->heap_increase_priority(H, get_vertex_dict_position(U), get_vertex_total_distance(U));
+            }
+            iterr = get_successor(iterr);
+        }
+    }
+}</pre>
+            
+            <h3>Structures de données</h3>
+            <p>Trois structures de données différentes ont été implémentées pour la file de priorité requise par l'algorithme de Dijkstra :</p>
+            
+            <h4>Tableau dynamique</h4>
+            <p>Structure utilisant un tableau redimensionnable pour stocker les éléments, avec des algorithmes spécifiques pour maintenir la propriété de tas-min :</p>
+            <pre>
+// Complexité des opérations primitives
+// Insertion: O(n)
+// Extraction min: O(log n)
+// Incrémentation de la priorité: O(log n)</pre>
+            
+            <h4>Arbre binaire complet</h4>
+            <p>Implémentation d'un tas-min basée sur un arbre binaire complet :</p>
+            <pre>
+// Complexité des opérations primitives
+// Insertion: O(log n)
+// Extraction min: O(log n)
+// Incrémentation de la priorité: O(log n)</pre>
+            
+            <h4>Liste ordonnée</h4>
+            <p>Structure utilisant une liste doublement chaînée maintenue en ordre croissant des priorités :</p>
+            <pre>
+// Complexité des opérations primitives
+// Insertion: O(1)
+// Extraction min: O(1)
+// Incrémentation de la priorité: O(n)</pre>
+            
+            <h3>Interface graphique</h3>
+            <p>L'interface graphique développée en JavaFX offre les fonctionnalités suivantes :</p>
+            <ul>
+                <li>Chargement de graphes depuis des fichiers</li>
+                <li>Création interactive de graphes avec ajout de sommets et d'arêtes</li>
+                <li>Choix de la structure de données à utiliser</li>
+                <li>Calcul et visualisation du plus court chemin</li>
+                <li>Affichage des distances calculées</li>
+                <li>Sauvegarde de graphes et de leurs solutions</li>
+            </ul>
+            
+            <h3>Analyse des performances</h3>
+            <p>L'analyse des performances a révélé des résultats intéressants :</p>
+            <ul>
+                <li><strong>Tableau dynamique</strong> : Offre les meilleures performances générales sur la plupart des cas d'utilisation</li>
+                <li><strong>Liste chaînée</strong> : Performance proche du tableau dynamique, légèrement moins efficace</li>
+                <li><strong>Arbre binaire complet</strong> : Significativement plus lent que les deux autres structures</li>
+            </ul>
+            <p>L'impact du nombre de sommets est beaucoup plus significatif que celui de la densité du graphe sur les temps d'exécution.</p>
+            
+            <h3>Défis techniques</h3>
+            <ul>
+                <li>Implémentation de l'algorithme de Dijkstra de manière générique pour fonctionner avec différentes structures de données</li>
+                <li>Création de fonctions d'insertion complexes pour l'arbre binaire complet (parcours récursif)</li>
+                <li>Résolution des difficultés d'intégration entre C et Java via JNI</li>
+                <li>Conception d'une interface graphique intuitive pour la visualisation des graphes</li>
+                <li>Automatisation des tests de performance et analyse des résultats</li>
+            </ul>
+            
+            <h3>Compétences développées</h3>
+            <ul>
+                <li>Conception et implémentation d'algorithmes complexes</li>
+                <li>Maîtrise approfondie des structures de données</li>
+                <li>Analyse de complexité théorique et mesure de performances pratiques</li>
+                <li>Programmation C avancée (pointeurs, généricité, structures)</li>
+                <li>Interface graphique JavaFX et intégration C/Java via JNI</li>
+                <li>Collaboration efficace en binôme avec Git/GitLab</li>
+                <li>Scripting Bash et Python pour l'automatisation</li>
+                <li>Visualisation de données avec matplotlib</li>
+            </ul>
+            
+            <h3>Conclusion</h3>
+            <p>Ce projet a permis de mettre en pratique de nombreux concepts théoriques d'algorithmique et de structures de données, tout en développant des compétences pratiques en programmation C, Java, et en intégration de systèmes. La compréhension approfondie de l'algorithme de Dijkstra et des différentes structures de données a constitué un apprentissage précieux pour la conception de solutions algorithmiques efficaces.</p>
+        </div>
+    </div>
+</div>
+
+    <div id="hearthstoneModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('hearthstoneModal').style.display='none'">&times;</span>
+            <h2>Projet Hearthstone - Implémentation Java</h2>
+            <div class="modal-body">
+                <h3>Aperçu du projet</h3>
+                <p>Ce projet est une implémentation en Java des mécaniques fondamentales du jeu de cartes populaire Hearthstone de Blizzard Entertainment. Sans interface graphique, cette version reproduit fidèlement la logique de jeu core: cartes, mana, héros, serviteurs et leurs interactions.</p>
+                
+                <h3>Objectifs du projet</h3>
+                <ul>
+                    <li>Mettre en pratique les principes de la programmation orientée objet</li>
+                    <li>Appliquer les bonnes pratiques de développement avec les tests unitaires JUnit</li>
+                    <li>Reproduire un système complexe de règles et d'interactions entre objets</li>
+                    <li>Gérer les différents états de jeu avec une architecture évolutive</li>
+                    <li>Implémenter des design patterns comme le Singleton</li>
+                </ul>
+                
+                <h3>Architecture du projet</h3>
+                <p>Le projet est structuré en plusieurs packages qui séparent clairement les responsabilités:</p>
+                <pre>
+project/
+├── Capacite/           # Capacités des serviteurs (Charge, Provocation, etc.)
+├── cartes/             # Système de cartes (Carte, CarteServiteur, CarteSort)
+├── effets/             # Effets des sorts (BoostServiteur, DegatHero, etc.)
+├── exception/          # Gestion des exceptions du jeu
+├── partie/             # Logique de la partie (Partie, Joueur, Sort)
+├── personnage/         # Personnages du jeu (Personnage, Serviteur, Hero)
+└── tests/              # Tests unitaires</pre>
+                
+                <h3>Fonctionnalités implémentées</h3>
+                <h4>Système de jeu complet</h4>
+                <ul>
+                    <li>Gestion des tours: Alternance entre les joueurs avec contrôle du mana</li>
+                    <li>Système de cartes: Cartes de serviteurs et cartes de sorts</li>
+                    <li>Deck et main: Pioche, main du joueur et pose de cartes</li>
+                    <li>Champ de bataille: Invocation et gestion des serviteurs sur le plateau</li>
+                </ul>
+                
+                <h4>Mécaniques de jeu Hearthstone</h4>
+                <ul>
+                    <li>Mana: Augmentation progressive du mana maximum par tour</li>
+                    <li>Attaques: Système d'attaque entre serviteurs et contre le héros</li>
+                    <li>Points de vie/attaque: Gestion des statistiques des personnages</li>
+                    <li>État des serviteurs: Serviteurs endormis/réveillés</li>
+                </ul>
+                
+                <h4>Capacités spéciales</h4>
+                <ul>
+                    <li>Charge: Permet à un serviteur d'attaquer dès son invocation</li>
+                    <li>Provocation: Force l'adversaire à attaquer ce serviteur en priorité</li>
+                    <li>Râle d'agonie: Effet déclenché à la mort du serviteur</li>
+                    <li>Renforcement par type: Bonus basé sur le type de serviteur présent</li>
+                    <li>Défausse de carte: Capacités qui affectent la main de l'adversaire</li>
+                </ul>
+                
+                <h3>Design Patterns et Principes OO</h3>
+                
+                <h4>Pattern Singleton</h4>
+                <p>La classe Partie utilise le pattern Singleton pour garantir qu'une seule instance de partie existe:</p>
+                <pre>
+public class Partie {
+    private static Partie instance;
+    
+    private Partie() {
+        // Initialisation
+    }
+    
+    public static Partie getInstance() {
+        if (instance == null) {
+            instance = new Partie();
+        }
+        return instance;
+    }
+}</pre>
+            </div>
+        </div>
+    </div>
+     
+<div id="projetGestionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('projetGestionModal').style.display='none'">&times;</span>
+        <h2>Système de Gestion de Projets d'Entreprise</h2>
+        <div class="modal-body">
+            <h3>Aperçu du projet</h3>
+            <p>Ce projet est un système complet de gestion de projets d'entreprise développé en PL/SQL Oracle. La solution permet de gérer les employés, les projets, les participations des employés et l'utilisation des matériels tout en assurant le respect de contraintes d'intégrité complexes et le calcul automatique des coûts.</p>
+            
+            <h3>Objectifs du projet</h3>
+            <ul>
+                <li>Concevoir un schéma physique de base de données avec des contraintes d'intégrité rigoureuses</li>
+                <li>Implémenter des mécanismes de calcul automatique des coûts des projets</li>
+                <li>Gérer les quotités de travail des employés sur plusieurs projets en parallèle</li>
+                <li>Créer un système d'alerte en cas de dépassement de budget</li>
+                <li>Développer des mécanismes de validation temporelle pour les périodes de travail</li>
+                <li>Calculer automatiquement les coûts mensuels des employés</li>
+            </ul>
+            
+            <h3>Structure de la base de données</h3>
+            <p>Le schéma relationnel comprend six tables principales interconnectées :</p>
+            <pre>
+Employe (Matricule, Nom, Fonction, CoutJour)
+CoutMensuelEmploye (Matricule, Mois, CoutMensuel)
+Projet (IdProj, DateDebutProj, DateFinProj, Budget, CoutEmp, CoutMat, RespProj)
+Participer (Matricule, IdProj, DateDebut, DateFin, Quotite)
+Materiel (CodeMat, TypeMateriel, CoutHoraire, NbHeurUtilisation)
+Utiliser (CodeMat, DateUtilisation, IdProj, CoutHoraire, NbHeures)</pre>
+            
+            <h3>Fonctionnalités implémentées</h3>
+            
+            <h4>Gestion des contraintes d'intégrité avancées</h4>
+            <ul>
+                <li>Validation temporelle : S'assure que les périodes de participation et d'utilisation sont comprises dans les périodes des projets</li>
+                <li>Gestion des quotités : Vérifie que la quotité totale d'un employé ne dépasse jamais 100% sur tous les projets pour chaque jour</li>
+                <li>Auto-incrémentation des identifiants de projets : Génération automatique des codes projets au format 'P' + numéro séquentiel</li>
+                <li>Validation des valeurs numériques : Contrôle que les coûts, budgets et durées respectent des contraintes logiques</li>
+            </ul>
+            
+            <h4>Calculs automatiques</h4>
+            <ul>
+                <li>Coûts des projets : Calcul automatique des coûts employés et matériels après chaque opération</li>
+                <li>Coûts mensuels des employés : Répartition des coûts par mois en fonction des jours travaillés</li>
+                <li>Utilisation des matériels : Cumul des heures d'utilisation pour chaque matériel</li>
+                <li>Vérification budgétaire : Contrôle et alerte en cas de dépassement de budget</li>
+            </ul>
+            
+            <h3>Défis techniques et solutions</h3>
+            
+            <h4>Problème des tables en mutation</h4>
+            <p>L'un des défis majeurs du projet était de gérer les "tables en mutation", qui se produisent lorsqu'un trigger tente de consulter une table déjà en cours de modification :</p>
+            <pre>
+CREATE OR REPLACE TRIGGER CheckTotalQuotiteEmploye
+BEFORE INSERT ON Participer
+FOR EACH ROW
+DECLARE
+    jour DATE := :NEW.DateDebut;
+    total_quotite NUMBER;
+BEGIN
+    WHILE jour <= :NEW.DateFin LOOP
+        -- Utilisation d'une sous-requête WITH pour éviter l'erreur de mutation
+        WITH TotalQuotite AS (
+            SELECT SUM(Quotite) AS somme_quotite
+            FROM Participer
+            WHERE Matricule = :NEW.Matricule
+              AND jour BETWEEN DateDebut AND DateFin
+        )
+        SELECT COALESCE(somme_quotite, 0) INTO total_quotite FROM TotalQuotite;
+
+        -- Vérification du dépassement de quotité
+        IF (total_quotite + :NEW.Quotite) > 100 THEN
+            RAISE_APPLICATION_ERROR(-20009,
+                'Le total des quotités de l''employé dépasse 100 pour la journée du '
+                || TO_CHAR(jour, 'DD/MM/YYYY'));
+        END IF;
+
+        jour := jour + 1;
+    END LOOP;
+END;</pre>
+            
+            <h4>Calcul des coûts par période</h4>
+            <p>Le calcul des coûts mensuels des employés a nécessité une logique complexe pour gérer les périodes à cheval sur plusieurs mois :</p>
+            <pre>
+CREATE OR REPLACE TRIGGER UpdateCoutMensuelEmploye
+AFTER INSERT OR UPDATE OR DELETE ON Participer
+FOR EACH ROW
+DECLARE
+    v_debut DATE;
+    v_fin DATE;
+    v_matricule NUMBER;
+    v_cout_jour NUMBER;
+    v_quotite NUMBER;
+    v_mois DATE;
+    v_nbj NUMBER;
+    v_m NUMBER := 0;
+BEGIN
+    -- Déterminer la période à traiter
+    CASE
+        WHEN INSERTING THEN
+            v_matricule := :NEW.Matricule;
+            v_debut := :NEW.DateDebut;
+            v_fin := :NEW.DateFin;
+            v_quotite := :NEW.Quotite;
+        WHEN DELETING THEN
+            v_matricule := :OLD.Matricule;
+            v_debut := :OLD.DateDebut;
+            v_fin := :OLD.DateFin;
+            v_quotite := :OLD.Quotite;
+        WHEN UPDATING THEN
+            -- Supprimer les anciennes entrées pour l'ancienne période
+            DELETE FROM CoutMensuelEmploye
+            WHERE Matricule = :OLD.Matricule
+            AND TO_DATE(Mois, 'mm/yyyy') BETWEEN TRUNC(:OLD.DateDebut, 'MM') AND LAST_DAY(:OLD.DateFin);
+            
+            v_matricule := :NEW.Matricule;
+            v_debut := :NEW.DateDebut;
+            v_fin := :NEW.DateFin;
+            v_quotite := :NEW.Quotite;
+    END CASE;
+
+    -- Récupérer le coût journalier de l'employé
+    SELECT CoutJour INTO v_cout_jour
+    FROM Employe
+    WHERE Matricule = v_matricule;
+
+    -- Si c'est une suppression, on supprime les entrées correspondantes
+    IF DELETING THEN
+        DELETE FROM CoutMensuelEmploye
+        WHERE Matricule = v_matricule
+        AND TO_DATE(Mois, 'mm/yyyy') BETWEEN TRUNC(v_debut, 'MM') AND LAST_DAY(v_fin);
+    ELSE
+        -- Pour INSERT et UPDATE, calculer les nouveaux coûts mensuels
+        WHILE LAST_DAY(ADD_MONTHS(v_debut, v_m)) <= LAST_DAY(v_fin) LOOP
+            v_mois := LAST_DAY(ADD_MONTHS(v_debut, v_m));
+            -- Calculer le nombre de jours pour ce mois
+            v_nbj := LEAST(v_fin, v_mois) - GREATEST(v_debut, TRUNC(v_mois, 'MM')) + 1;
+
+            -- Mettre à jour ou insérer le coût mensuel
+            MERGE INTO CoutMensuelEmploye c
+            USING (
+                SELECT
+                    v_matricule as Matricule,
+                    TO_CHAR(v_mois, 'mm/yyyy') as Mois,
+                    v_cout_jour * v_nbj * (v_quotite/100) as NouveauCout
+                FROM dual
+            ) n
+            ON (c.Matricule = n.Matricule AND c.Mois = n.Mois)
+            WHEN MATCHED THEN
+                UPDATE SET c.CoutMensuel = c.CoutMensuel + n.NouveauCout
+            WHEN NOT MATCHED THEN
+                INSERT (Matricule, Mois, CoutMensuel)
+                VALUES (n.Matricule, n.Mois, n.NouveauCout);
+
+            v_m := v_m + 1;
+        END LOOP;
+    END IF;
+END;</pre>
+            
+            <h4>Système d'alerte budgétaire</h4>
+            <p>Un système d'alerte a été implémenté pour signaler les dépassements de budget :</p>
+            <pre>
+CREATE OR REPLACE TRIGGER CheckBudgetParticiper
+BEFORE INSERT OR UPDATE ON Participer
+FOR EACH ROW
+DECLARE
+    budget NUMBER;
+    cout_emp_actuel NUMBER;
+    cout_mat_actuel NUMBER;
+    cout_ajoute NUMBER;
+    mat_resp NUMBER;
+    nom_resp VARCHAR2(100);
+BEGIN
+    -- Récupérer les données du projet
+    SELECT Budget, CoutEmp, CoutMat, RespProj
+    INTO budget, cout_emp_actuel, cout_mat_actuel, mat_resp
+    FROM Projet
+    WHERE IdProj = :NEW.IdProj;
+
+    -- Calculer le coût ajouté
+    SELECT e.CoutJour * (:NEW.DateFin - :NEW.DateDebut + 1) * :NEW.Quotite / 100
+    INTO cout_ajoute
+    FROM Employe e
+    WHERE e.Matricule = :NEW.Matricule;
+
+    -- Vérifier le dépassement de budget
+    IF (cout_emp_actuel + cout_mat_actuel + cout_ajoute) > budget THEN
+        -- Récupérer le nom du responsable
+        SELECT Nom INTO nom_resp
+        FROM Employe
+        WHERE Matricule = mat_resp;
+
+        -- Afficher l'alerte
+        DBMS_OUTPUT.PUT_LINE('Alerte : Budget dépassé sur le projet ' || :NEW.IdProj ||
+                             ' dirigé par ' || nom_resp ||
+                             '. Coût en matériel : ' || cout_mat_actuel ||
+                             ', coût employé : ' || cout_emp_actuel ||
+                             ', budget : ' || budget);
+    END IF;
+END;</pre>
+            
+            <h3>Compétences développées</h3>
+            <ul>
+                <li>Conception avancée de bases de données relationnelles</li>
+                <li>Programmation PL/SQL complexe avec triggers et gestion d'exceptions</li>
+                <li>Mise en œuvre de contraintes d'intégrité sophistiquées</li>
+                <li>Développement de solutions pour les problèmes de tables en mutation</li>
+                <li>Calculs temporels complexes sur des périodes de dates</li>
+                <li>Création de rapports et d'alertes automatiques</li>
+            </ul>
+            
+            <h3>Conclusion</h3>
+            <p>Ce projet a permis de mettre en pratique des concepts avancés de bases de données relationnelles et de programmation PL/SQL. Les solutions développées offrent une gestion robuste des projets d'entreprise avec un contrôle précis des coûts et des ressources humaines et matérielles.</p>
+        </div>
+    </div>
+</div>
+    <!-- Modal pour le projet PL/SQL -->
+<div id="plsqlModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('plsqlModal').style.display='none'">&times;</span>
+        <h2>Gestion de Location de Véhicules - Interface PL/SQL Oracle</h2>
+        <div class="modal-body">
+            <h3>Aperçu du projet</h3>
+            <p>Ce projet consiste en la réalisation d'une interface en PL/SQL Oracle pour une société de location de véhicules. Le système permet de gérer les véhicules, les modèles, les types, les formules de location et les tarifs associés.</p>
+            
+            <h3>Objectifs du projet</h3>
+            <ul>
+                <li>Concevoir un schéma physique de la base de données avec toutes les contraintes d'intégrité</li>
+                <li>Développer des procédures et fonctions PL/SQL pour gérer les véhicules et les locations</li>
+                <li>Implémenter des mécanismes de validation des données et de gestion des erreurs</li>
+                <li>Créer des requêtes d'interrogation pour extraire les informations nécessaires</li>
+                <li>Gérer les transactions de manière sécurisée</li>
+            </ul>
+            
+            <h3>Structure de la base de données</h3>
+            <p>Le schéma relationnel comprend six tables principales interconnectées :</p>
+            <pre>
+Vehicule (NumVehicule, Modele, Matricule, DateMatricule, Kilometrage, Situation)
+Modeles (Modele, Marque, IdType)
+Types (IdType, Type, Categorie, PrixKmSupp)
+Location (NumLocation, NumVehicule, Formule, DateDepart, DateRetour, NbKm, Montant)
+Formules (Formule, NbJours, KmMax)
+Tarif (IdType, Formule, Prix)</pre>
+            
+            <h3>Fonctionnalités implémentées</h3>
+            <h4>Gestion des véhicules</h4>
+            <ul>
+                <li>Ajout et mise à jour des véhicules avec validation complète des données</li>
+                <li>Recherche de véhicules disponibles par type avec tri par marque et modèle</li>
+                <li>Gestion automatique des numéros de véhicules via une séquence</li>
+                <li>Vérification de l'existence des modèles et des contraintes sur les dates et kilométrages</li>
+            </ul>
+            
+            <h4>Calcul des formules tarifaires</h4>
+            <ul>
+                <li>Détermination de la formule de location la plus avantageuse économiquement</li>
+                <li>Prise en compte de la durée de location et du kilométrage prévu</li>
+                <li>Comparaison automatique des tarifs pour différentes formules</li>
+            </ul>
+            
+            <h3>Procédures et fonctions principales</h3>
+            
+            <h4>Procédure AjouterVehicule</h4>
+            <p>Cette procédure permet d'ajouter un nouveau véhicule ou de mettre à jour un véhicule existant :</p>
+            <pre>
+AjouterVehicule(
+    v_Modele IN VARCHAR2,
+    v_Matricule IN CHAR,
+    v_DateMatricule IN DATE,
+    v_Kilometrage IN NUMBER
+)</pre>
+            <p>La procédure effectue plusieurs validations :</p>
+            <ul>
+                <li>Vérification de la présence de tous les paramètres (non NULL)</li>
+                <li>Vérification de l'existence du modèle dans la base de données</li>
+                <li>Validation de la date de matriculation (antérieure à la date du jour)</li>
+                <li>Validation du kilométrage (non négatif)</li>
+                <li>Si le matricule existe déjà, mise à jour des informations du véhicule</li>
+                <li>Si le matricule est nouveau, création d'un nouveau véhicule avec numéro séquentiel</li>
+            </ul>
+            
+            <h4>Procédure VehiculesDisponibles</h4>
+            <p>Cette procédure recherche et affiche la liste des véhicules disponibles d'un type spécifié :</p>
+            <pre>
+VehiculesDisponibles(v_Type IN VARCHAR2)</pre>
+            <p>Fonctionnalités :</p>
+            <ul>
+                <li>Vérification de l'existence du type spécifié</li>
+                <li>Affichage des véhicules disponibles triés par marque et modèle</li>
+                <li>Message adapté si aucun véhicule n'est disponible dans le type demandé</li>
+            </ul>
+            
+            <h4>Fonction FormuleAvantageuse</h4>
+            <p>Cette fonction détermine et retourne la formule la plus économique pour une location :</p>
+            <pre>
+FormuleAvantageuse(
+    Duree IN NUMBER,
+    Typ IN VARCHAR2,
+    Km IN NUMBER
+) RETURN VARCHAR2</pre>
+            <p>La fonction :</p>
+            <ul>
+                <li>Valide les paramètres fournis (durée, type, kilométrage)</li>
+                <li>Vérifie l'existence du type spécifié</li>
+                <li>Trouve la formule ayant le prix le plus bas pour les critères fournis</li>
+                <li>Retourne un message formaté avec le nom de la formule et son prix</li>
+            </ul>
+            
+            <h3>Compétences développées</h3>
+            <ul>
+                <li>Modélisation et implémentation de bases de données relationnelles</li>
+                <li>Programmation avancée en PL/SQL (procédures, fonctions, gestion d'erreurs)</li>
+                <li>Conception et mise en œuvre de contraintes d'intégrité</li>
+                <li>Optimisation des requêtes et des transactions</li>
+                <li>Documentation technique et rapports d'analyse</li>
+            </ul>
+            
+            <h3>Défis et solutions</h3>
+            <p>Le principal défi de ce projet était de garantir l'intégrité des données tout en gérant correctement les situations exceptionnelles. J'ai implémenté une gestion robuste des erreurs et des transactions pour assurer que toutes les opérations soient complètes ou annulées en cas de problème.</p>
+            
+            <p>Pour le calcul des formules avantageuses, j'ai dû concevoir un algorithme efficace qui puisse comparer différentes combinaisons de tarifs en fonction de multiples critères. La solution a consisté à utiliser des requêtes SQL optimisées avec des ordonnances et des filtres pertinents.</p>
+        </div>
+    </div>
+</div>
+     
+    <div id="ppilModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('ppilModal').style.display='none'">&times;</span>
+            <h2>Projet Premiers Pas vers l'Ingénierie du logiciel</h2>
+            <div class="modal-body">
+                <h3>Aperçu du projet</h3>
+                <p>Ce projet est une application distribuée client-serveur pour la gestion et l'affichage de formes géométriques 2D. Il comprend un client écrit en C++ qui permet de manipuler des formes (création, transformation, sauvegarde) et un serveur Java qui se charge de l'affichage graphique.</p>
+                
+<h3>Objectifs du projet</h3>
+                <ul>
+                    <li>Développer une application C++ pour la gestion de formes géométriques</li>
+                    <li>Implémenter une communication client-serveur via sockets</li>
+                    <li>Appliquer plusieurs design patterns (Visitor, Chain of Responsibility, Singleton)</li>
+                    <li>Mettre en pratique les principes de la programmation orientée objet</li>
+                    <li>Gérer les transformations géométriques (translation, rotation, homothétie)</li>
+                    <li>Créer un système de sauvegarde/chargement de formes</li>
+                </ul>
+                
+                <h3>Architecture du projet</h3>
+                <p>Le projet est structuré selon une architecture client-serveur :</p>
+                <pre>
+Client C++ (Gestion des formes)
+├── Formes/                # Classes pour les différentes formes géométriques
+│   ├── Forme.h            # Classe abstraite de base pour toutes les formes
+│   ├── Cercle.h           # Implémentation d'un cercle
+│   ├── Segment.h          # Implémentation d'un segment
+│   ├── Triangle.h         # Implémentation d'un triangle
+│   ├── Polygone.h         # Implémentation d'un polygone
+│   ├── Groupe.h           # Gestion de formes composées
+│   └── ...
+├── Client/                # Communication réseau et parsing
+│   ├── ClientDessin.h     # Client TCP/IP pour communiquer avec le serveur
+│   ├── FormeVisitor/      # Implémentation du pattern Visitor
+│   └── FormeCOR/          # Implémentation du pattern Chain of Responsibility
+└── ...
+
+Serveur Java (Affichage graphique)
+├── ServeurAffichage.java  # Point d'entrée du serveur
+├── ReceveurEnvoyeur.java  # Gestion de la communication avec les clients
+├── FormeDrawer.java       # Dessin des formes avec l'API graphique Java
+└── Forme/                 # Classes pour les différentes formes à dessiner</pre>
+                
+                <h3>Fonctionnalités implémentées</h3>
+                <h4>Gestion des formes géométriques</h4>
+                <ul>
+                    <li>Formes simples: Segment, Cercle, Triangle, Polygone</li>
+                    <li>Formes composées: Groupe de formes</li>
+                    <li>Attributs: Couleur (noir, bleu, rouge, vert, jaune, cyan)</li>
+                    <li>Calcul d'aire pour chaque type de forme</li>
+                </ul>
+                
+                <h4>Transformations géométriques</h4>
+                <ul>
+                    <li>Translation: Déplacement selon un vecteur</li>
+                    <li>Homothétie: Zoom depuis un point invariant</li>
+                    <li>Rotation: Rotation autour d'un point pivot avec angle en radians</li>
+                </ul>
+                
+                <h4>Communication client-serveur</h4>
+                <ul>
+                    <li>Protocole de communication par chaînes de caractères</li>
+                    <li>Commandes pour ouvrir/fermer la fenêtre, dessiner des formes</li>
+                    <li>Support de multiples clients connectés simultanément</li>
+                    <li>Transmission des données de formes pour affichage</li>
+                </ul>
+                
+                <h4>Sauvegarde et chargement</h4>
+                <ul>
+                    <li>Format texte personnalisé pour la sauvegarde des formes</li>
+                    <li>Chargement de formes à partir de fichiers</li>
+                    <li>Analyse syntaxique des fichiers de formes</li>
+                </ul>
+                
+                <h3>Design Patterns implémentés</h3>
+                
+                <h4>Pattern Visitor</h4>
+                <p>Le pattern Visitor est utilisé pour séparer les algorithmes des structures d'objets. Dans ce projet, il est implémenté pour les opérations de dessin et de sauvegarde :</p>
+                <pre>
+// FormeVisitor.h - Interface du visiteur
+class FormeVisitor {
+public:
+    virtual ~FormeVisitor() {}
+    virtual void visit(const Cercle & c) = 0;
+    virtual void visit(const Segment & s) = 0;
+    virtual void visit(const Triangle & t) = 0;
+    virtual void visit(const Polygone & p) = 0;
+    virtual void visit(const Groupe & g) = 0;
+};
+
+// ClientDessinVisitor.h - Visiteur pour générer des commandes de dessin
+class ClientDessinVisitor : public FormeVisitor {
+private:
+    ostringstream commandes;
+public:
+    void visit(const Cercle &c) override {
+        commandes << "draw Cercle{ " << c.getCentre() << ", " << c.getRayon() << ", " << c.getCouleur() << " }\n";
+    }
+    
+    // Autres méthodes visit pour les différentes formes...
+    
+    string getCommandes() const {
+        return commandes.str();
+    }
+};</pre>
+                
+                <h4>Pattern Chain of Responsibility</h4>
+                <p>Le pattern Chain of Responsibility est utilisé pour les parseurs de formes, permettant l'extension facile avec de nouvelles formes :</p>
+                <pre>
+// ParseurFormeCor.h - Base de la chaîne de responsabilité
+class ParseurFormeCor {
+protected:
+    const ParseurFormeCor* suivant;
+public:
+    ParseurFormeCor(const ParseurFormeCor* suivant = nullptr) : suivant(suivant) {}
+    virtual ~ParseurFormeCor() { delete suivant; }
+    
+    virtual bool parse(std::istream &in, std::string &line, Forme*& r) const {
+        if (suivant) {
+            return suivant->parse(in, line, r);
+        }
+        return false;
+    }
+};
+
+// ParseurFormeCorExpert.h - Organisation de la chaîne
+ParseurFormeCorExpert() : ParseurFormeCor(
+    new ParseurGroupe(
+        new ParseurSegment(
+            new ParseurTriangle(
+                new ParseurPolygone(
+                    new ParseurCercle(nullptr)
+                )
+            )
+        )
+    )
+) {}</pre>
+                
+                <h4>Pattern Singleton</h4>
+                <p>Le pattern Singleton est utilisé pour la gestion de l'initialisation Winsock :</p>
+                <pre>
+// WinsockManager.h - Implémentation du Singleton
+class WinsockManager {
+private:
+    // Constructeur privé
+    WinsockManager() {
+        WSADATA wsaData;
+        int r = WSAStartup(MAKEWORD(2, 0), &wsaData);
+        if (r != 0) {
+            std::ostringstream oss;
+            oss << "WSAStartup a échoué, code erreur : " << r;
+            throw std::runtime_error(oss.str());
+        }
+    }
+    // Destructeur privé
+    ~WinsockManager() {
+        WSACleanup();
+    }
+public:
+    // Supprimer le constructeur de copie et l'opérateur d'affectation
+    WinsockManager(const WinsockManager&) = delete;
+    WinsockManager& operator=(const WinsockManager&) = delete;
+
+    // Méthode d'accès statique au singleton
+    static WinsockManager& instance() {
+        static WinsockManager instance;
+        return instance;
+    }
+};</pre>
+                
+                <h3>Compétences développées</h3>
+                <ul>
+                    <li>Programmation orientée objet avancée en C++ et Java</li>
+                    <li>Mise en œuvre de design patterns</li>
+                    <li>Développement d'applications client-serveur</li>
+                    <li>Programmation réseau avec Winsock</li>
+                    <li>Manipulation de structures de données complexes</li>
+                    <li>Gestion des transformations géométriques</li>
+                    <li>Travail en équipe et versionning avec GitLab</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation au défilement
+        document.addEventListener("DOMContentLoaded", function() {
+            const fadeElements = document.querySelectorAll('.project-card, .skill-item');
+            const modals = document.querySelectorAll('.modal');
+            
+            // Configuration des animations de défilement
+            function checkScroll() {
+                const triggerBottom = window.innerHeight * 0.8;
+                
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < triggerBottom) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            }
+            
+            // Style initial des éléments animés
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(20px)";
+                element.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            });
+            
+            // Configuration des modales
+            modals.forEach(modal => {
+                // Fermer la modale en cliquant en dehors du contenu
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Vérifier au chargement
+            window.addEventListener('load', checkScroll);
+            // Vérifier au défilement
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
