@@ -697,7 +697,7 @@
                  
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="ppil.png" alt="Projet Formes Géométriques">
+                        <img src="PPIL.png" alt="Projet Formes Géométriques">
                     </div>
                     <div class="project-content">
                         <h3>Premiers Pas vers l'Ingénierie du logiciel</h3>
@@ -715,7 +715,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                  <div class="project-card">
                     <div class="project-img">
                         <img src="Dijkstra.jpg" alt="Projet Dijkstra">
@@ -760,6 +760,7 @@
                     </div>
                 </div>
                 
+                
 
                 <div class="project-card">
                     <div class="project-img">
@@ -782,6 +783,27 @@
                     </div>
                 </div>
                 
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="loderunner.png" alt="Projet Lode Runner">
+                    </div>
+                    <div class="project-content">
+                        <h3>Reconstitution du jeu Lode Runner</h3>
+                        <p>Recréation from scratch du célèbre jeu Lode Runner sur LibGDX. Développement complet incluant le système de collisions, la gravité, l'intelligence artificielle des ennemis, et la gestion des niveaux avec des puzzles complexes.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">LibGDX</span>
+                            <span class="project-tag">Eclipse</span>
+                            <span class="project-tag">Game Development</span>
+                            <span class="project-tag">IA</span>
+                            <span class="project-tag">Physique</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn" onclick="document.getElementById('lodeRunnerModal').style.display='block'">Voir détails</button>
+                            <button class="btn btn-disabled">Code non disponible</button>
+                        </div>
+                    </div>
+                </div>
                  
                 <div class="project-card">
                     <div class="project-img">
@@ -1450,7 +1472,120 @@ FormuleAvantageuse(
         </div>
     </div>
 </div>
-     
+     <div id="lodeRunnerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('lodeRunnerModal').style.display='none'">&times;</span>
+        <h2>Reconstitution du jeu Lode Runner</h2>
+        <div class="modal-body">
+            <h3>Aperçu du projet</h3>
+            <p>Ce projet est une reconstitution complète du jeu classique Lode Runner, développé avec Java et le framework LibGDX. L'objectif était de recréer de zéro toutes les mécaniques originales du jeu, en implémentant les systèmes de collision, la physique, l'intelligence artificielle des ennemis et les interactions environnementales.</p>
+            
+            <h3>Objectifs du projet</h3>
+            <ul>
+                <li>Recréer fidèlement l'expérience du jeu Lode Runner original</li>
+                <li>Implémenter un moteur physique 2D personnalisé avec gestion de la gravité</li>
+                <li>Développer un système de collision précis pour les interactions entre personnages et environnement</li>
+                <li>Concevoir une IA avancée pour les ennemis avec comportements de poursuite et d'évitement</li>
+                <li>Créer un éditeur de niveaux pour faciliter la conception de puzzles</li>
+                <li>Optimiser les performances pour un gameplay fluide</li>
+            </ul>
+            
+            <h3>Architecture technique</h3>
+            <p>Le projet est structuré selon une architecture MVC (Modèle-Vue-Contrôleur) adaptée aux jeux vidéo :</p>
+            <pre>
+/
+├── core/
+│   ├── model/
+│   │   ├── World.java                 # Représentation du monde de jeu
+│   │   ├── Player.java                # Logique du joueur
+│   │   ├── Enemy.java                 # Logique des ennemis
+│   │   ├── Tile.java                  # Éléments du niveau
+│   │   └── Level.java                 # Structure des niveaux
+│   ├── view/
+│   │   ├── WorldRenderer.java         # Rendu graphique du monde
+│   │   ├── SpriteManager.java         # Gestion des sprites
+│   │   └── AnimationManager.java      # Gestion des animations
+│   ├── controller/
+│   │   ├── WorldController.java       # Logique de jeu principale
+│   │   ├── PlayerController.java      # Contrôle du joueur
+│   │   ├── EnemyController.java       # Contrôle des ennemis
+│   │   └── CollisionController.java   # Gestion des collisions
+│   ├── physics/
+│   │   ├── PhysicsEngine.java         # Moteur physique
+│   │   ├── GravityManager.java        # Simulation de la gravité
+│   │   └── CollisionDetector.java     # Détection de collision
+│   ├── ai/
+│   │   ├── PathFinder.java            # Algorithme A* pour les ennemis
+│   │   ├── EnemyBehavior.java         # Comportements des ennemis
+│   │   └── AIManager.java             # Gestion de l'IA
+│   └── utils/
+│       ├── Constants.java             # Constantes du jeu
+│       └── LevelLoader.java           # Chargement des niveaux
+└── desktop/
+    └── DesktopLauncher.java           # Point d'entrée application</pre>
+            
+            <h3>Fonctionnalités implémentées</h3>
+            
+            <h4>Système de collision avancé</h4>
+            <p>Le système de collision est basé sur une grille discrète avec gestion de pixel pour les interactions entre les personnages et l'environnement :</p>
+            <ul>
+                <li>Détection de collision sur plusieurs niveaux (sol, échelles, barres, etc.)</li>
+                <li>Gestion des zones de creusement pour piéger les ennemis</li>
+                <li>Simulation de chute à travers les briques temporairement creusées</li>
+                <li>Réponse aux collisions avec rebond minimal pour un gameplay fluide</li>
+            </ul>
+            
+            <h4>Moteur physique personnalisé</h4>
+            <ul>
+                <li>Simulation de la gravité avec accélération progressive</li>
+                <li>Gestion de la montée aux échelles et déplacement sur les barres horizontales</li>
+                <li>Déplacement avec interpolation pour assurer une animation fluide</li>
+                <li>Détection des surfaces pour déterminer les possibilités de mouvement</li>
+            </ul>
+            
+            <h4>Intelligence artificielle des ennemis</h4>
+            <p>L'IA des ennemis est basée sur un système hybride combinant pathfinding et comportements contextuels :</p>
+            <ul>
+                <li>Algorithme optimisé pour trouver le chemin le plus court vers le joueur</li>
+                <li>Comportement d'évitement lorsque les ennemis sont piégés dans des trous</li>
+                <li>Adaptation dynamique à la modification de l'environnement par le joueur</li>
+                <li>Différents niveaux de difficulté ajustant la précision et l'agressivité de l'IA</li>
+            </ul>
+            
+            <h4>Gestion des niveaux</h4>
+            <ul>
+                <li>Chargement des niveaux à partir de fichiers texte ou binaires</li>
+                <li>Support pour différents types de tuiles (sol, échelles, or, etc.)</li>
+                <li>Reconstruction automatique des briques creusées après un délai</li>
+                <li>Système de progression avec déblocage de niveaux</li>
+                <li>Éditeur de niveaux intégré pour créer et tester de nouveaux puzzles</li>
+            </ul>
+            
+            <h3>Défis techniques</h3>
+            <ul>
+                <li><strong>Implémentation des mécaniques originales</strong> : Recréer fidèlement le comportement du jeu d'origine tout en utilisant des technologies modernes</li>
+                <li><strong>Optimisation des performances</strong> : Assurer un gameplay fluide à 60 FPS sur différentes plateformes</li>
+                <li><strong>Développement de l'IA</strong> : Créer des ennemis qui semblent intelligents sans être trop prévisibles ou impossibles à battre</li>
+                <li><strong>Gestion de la physique</strong> : Développer un système de gravité qui respecte les règles du jeu original</li>
+                <li><strong>Détection de collision</strong> : Implémenter un système précis mais performant pour toutes les interactions</li>
+            </ul>
+            
+            <h3>Compétences développées</h3>
+            <ul>
+                <li>Programmation avancée en Java et utilisation du framework LibGDX</li>
+                <li>Développement d'algorithmes d'IA pour les jeux vidéo</li>
+                <li>Conception et implémentation de systèmes de physique 2D</li>
+                <li>Création de systèmes de gestion d'animation et de rendu graphique</li>
+                <li>Techniques d'optimisation pour les jeux temps réel</li>
+                <li>Architecture logicielle adaptée au développement de jeux</li>
+                <li>Gestion de projet de développement de jeu</li>
+            </ul>
+            
+            <h3>Conclusion</h3>
+            <p>Ce projet m'a permis d'approfondir ma compréhension des mécaniques fondamentales de développement de jeux vidéo, en partant de zéro pour recréer un classique. Au-delà des aspects techniques, j'ai acquis une appréciation pour le level design et l'équilibrage de la difficulté qui sont essentiels pour créer une expérience de jeu engageante.</p>
+        </div>
+    </div>
+</div>
     <div id="ppilModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="document.getElementById('ppilModal').style.display='none'">&times;</span>
